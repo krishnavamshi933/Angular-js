@@ -1,13 +1,13 @@
 {
-  "name": "angularjs-app",
+  "name": "my-angularjs-app",
   "version": "1.0.0",
-  "description": "A basic AngularJS application",
   "scripts": {
-    "start": "http-server -o"
+    "start": "http-server -p 8080",
+    "build": "ng build"
   },
   "dependencies": {
-    "angular": "1.8.0",
-    "angular-route": "1.8.0",
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2",
     "http-server": "^0.12.3"
   }
 }
