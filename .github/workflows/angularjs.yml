@@ -2,43 +2,30 @@ name: AngularJS.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 16
 
-      - name: Check AWS CLI installation
-        id: check_aws_cli
-        run: |
-          if ! command -v aws &> /dev/null; then
-            echo "AWS_CLI_INSTALLED=false" >> $GITHUB_ENV
-          else
-            echo "AWS_CLI_INSTALLED=true" >> $GITHUB_ENV
-          fi
-
-      - name: Install or update AWS CLI
-        if: env.AWS_CLI_INSTALLED != 'true'
-        run: |
-          curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          unzip awscliv2.zip
-          sudo ./aws/install
-
       - name: Install dependencies
         run: npm install
 
       - name: Build
-        run: npm run build --if-present
+        run: npm run build
 
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -47,5 +34,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-southeast-1
 
-     - name: Deploy to S3
-        run: aws s3 sync dist/ s3://krishnavamshi.xyz/
+      - name: Deploy to S3
+        run: |
+          aws s3 sync dist/ s3://krishnavamshi.xyz/
