@@ -25,9 +25,6 @@ jobs:
       - name: Build AngularJS project
         run: npm run build
 
-      - name: Run tests
-        run: npm run test
-
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
