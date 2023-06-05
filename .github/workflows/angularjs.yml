@@ -21,14 +21,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
       - name: Install dependencies
         run: npm install
-
-      - name: Build
-        run: ng build
 
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
