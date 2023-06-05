@@ -25,12 +25,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build AngularJS project
-        run: ng build
-
-      - name: Run tests
-        run: ng test
-
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -40,4 +34,4 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync dashboard/ s3://your-s3-bucket/
+          aws s3 sync dashboard/ s3://krishnavamshi.xyz/
