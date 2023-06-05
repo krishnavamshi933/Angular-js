@@ -21,9 +21,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd rect-js && npm install
-      - run: cd rect-js && npm run build --if-present
-      - run: cd rect-js && npm test
+      - run: cd Angular-js && npm install
+      - run: cd Angular-js && npm run build --if-present
+      - run: Angular-js && npm test
 
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
